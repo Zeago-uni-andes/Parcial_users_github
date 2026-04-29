@@ -6,6 +6,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { App } from './app';
 
 import { HomeModule } from './home/home-module';
+import { UserModule } from './user/user-module';
+import { RepositoryModule } from './repository/repository-module';
 @NgModule({
   declarations: [
     App
@@ -14,6 +16,8 @@ import { HomeModule } from './home/home-module';
     BrowserModule,
     AppRoutingModule,
     HomeModule,
+    RepositoryModule,
+    UserModule,
     HttpClientModule
   ],
   providers: [

@@ -1,5 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import {Repository} from '../repository'
+import { RepositoryService } from '../repository.service';
+
 @Component({
   selector: 'app-repo-list',
   standalone: false,
@@ -7,12 +9,24 @@ import {Repository} from '../repository'
   styleUrl: './repo-list.css',
 })
 export class RepoList implements OnInit{
-  repository: Repository[] = [
-    { "id": 101, "name": "repo-101", "description": "Angular project", "language": "TypeScript", "stars": 50, "createdAt": "2025-01-01", "ownerId": 1 }
-  ];
+  repository: Repository[] = [];
 
-  constructor(){}
+  constructor(private repositoryService: RepositoryService, private cd: ChangeDetectorRef) { }
 
   ngOnInit(): void {
+    this.fetchRepos();
+  }
+
+  fetchRepos(): void {
+    this.repositoryService.getRepositories().subscribe({
+      next: (data) => {
+        this.repository = data;
+        this.cd.detectChanges();
+        console.log('Repositorios sincronizados:', this.repository.length);
+      },
+      error: (err) => {
+        console.error('Error en la carga de repositorios:', err);
+      }
+    });
   }
 }
