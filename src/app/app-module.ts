@@ -2,6 +2,7 @@ import { NgModule, provideBrowserGlobalErrorListeners } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing-module';
+import { HttpClientModule } from '@angular/common/http';
 import { App } from './app';
 
 import { HomeModule } from './home/home-module';
@@ -12,7 +13,8 @@ import { HomeModule } from './home/home-module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HomeModule
+    HomeModule,
+    HttpClientModule
   ],
   providers: [
     provideBrowserGlobalErrorListeners(),

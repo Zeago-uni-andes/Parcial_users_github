@@ -1,33 +1,30 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { User } from '../user';
- 
+import { UserService } from '../user.service';
+
 @Component({
   selector: 'app-user-list',
-  standalone: false,
-  templateUrl: './user-list.html',
-  styleUrl: './user-list.css',
+  templateUrl: './user-list.html', // Verifica si tu archivo es .html o .component.html
+  standalone: false                // CRÍTICO: para que funcione con tu NgModule
 })
 export class UserList implements OnInit {
-  users: User[] = [
-    { 
-      "id": 1, 
-      "username": "user1", 
-      "name": "User One", 
-      "email": "user1@mail.com", 
-      "avatarUrl": "https://i.pravatar.cc/150?img=1", 
-      "role": "admin", 
-      "location": "Bogotá", 
-      "repoIds": [101, 102] 
-    }
-  ];
-
+  users: User[] = [];
   selectedUser?: User;
 
-  constructor() { }
+  constructor(private userService: UserService,private cd: ChangeDetectorRef) { }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.userService.getUsers().subscribe({
+      next: (data) => {
+        this.users = data;
+        this.cd.detectChanges();
+      },
+      error: (err) => console.error('Error:', err)
+    });
+  }
 
   onSelect(user: User): void {
     this.selectedUser = user;
+    this.cd.detectChanges();
   }
 }
