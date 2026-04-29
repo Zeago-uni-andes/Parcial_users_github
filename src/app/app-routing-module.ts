@@ -1,17 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { Welcome } from './home/welcome/welcome';
-// Importa tus otros componentes aquí
+import { UserList } from './user/user-list/user-list'
 
 const routes: Routes = [
   { path: 'home', component: Welcome },
   { path: '', redirectTo: '/home', pathMatch: 'full' },
-  // Deja las otras rutas comentadas hasta que crees los componentes
-  // { path: 'usuarios', component: UserListComponent },
+  { path: 'users', component: UserList },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)], // Usa forRoot para el principal
+  imports: [RouterModule.forRoot(routes)], 
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
