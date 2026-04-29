@@ -1,1 +1,13 @@
-<p>user-detail works!</p>
+<div class="user-detail-container">
+  <div class="text-center mb-4">
+    <img [src]="userDetail.avatarUrl" class="rounded-circle shadow" width="200">
+  </div>
+  
+  <h1 class="fw-black text-uppercase">{{ userDetail.name }}</h1>
+  <p class="text-primary fst-italic">{{ userDetail.role }}</p>
+  
+  <div class="card p-3 border-0 shadow-sm">
+     <p><strong>Email:</strong> {{ userDetail.email }}</p>
+     <p><strong>Ubicación:</strong> {{ userDetail.location }}</p>
+  </div>
+</div>

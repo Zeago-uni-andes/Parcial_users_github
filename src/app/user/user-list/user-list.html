@@ -7,10 +7,10 @@
       </header>
 
       <div class="d-grid gap-4">
-        <div *ngFor="let u of users" 
-             (click)="onSelect(u)" 
-             class="card border-0 overflow-hidden shadow-sm selection-card" 
-             style="cursor: pointer; border-radius: 20px; transition: transform 0.2s;">
+        <button *ngFor="let u of users" 
+              (click)="onSelect(u)"
+              class="list-group-item list-group-item-action d-flex align-items-center gap-3"
+              [class.active]="selectedUser?.id === u.id">
           
           <div class="position-relative bg-dark" style="height: 400px;">
             <img [src]="u.avatarUrl" class="w-100 h-100 object-fit-cover opacity-75" [alt]="u.name">
@@ -31,7 +31,17 @@
               <small class="text-white-50">@{{ u.username }}</small>
             </div>
           </div>
-        </div>
+        </button>
       </div>
     </div>
+    <div class="col-md-7">
+    <app-user-detail 
+      *ngIf="selectedUser" 
+      [userDetail]="selectedUser">
+    </app-user-detail>
+
+    <div *ngIf="!selectedUser" class="text-center p-5 border rounded-4 bg-light">
+      <p>Selecciona un usuario para ver el detalle profesional</p>
+    </div>
+  </div>
 </div>
