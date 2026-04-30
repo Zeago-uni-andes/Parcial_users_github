@@ -1,0 +1,11 @@
+/* Asegura que el contenedor del detalle no sea más alto que la pantalla */
+.sticky-top {
+    max-height: calc(100vh - 4rem);
+    overflow-y: auto; /* Por si el detalle es muy largo, que tenga su propio scroll interno */
+    scrollbar-width: thin; /* Estética para navegadores modernos */
+}
+
+/* Evitar que el scroll de la página se vea interrumpido */
+body {
+    scroll-behavior: smooth;
+}

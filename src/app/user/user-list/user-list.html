@@ -35,10 +35,12 @@
       </div>
     </div>
     <div class="col-md-7">
-    <app-user-detail 
-      *ngIf="selectedUser" 
-      [userDetail]="selectedUser">
-    </app-user-detail>
+      <div class="sticky-top" style="top: 2rem; z-index: 10;">
+        
+        <app-user-detail 
+          *ngIf="selectedUser" 
+          [userDetail]="selectedUser">
+        </app-user-detail>
 
     <div *ngIf="!selectedUser" class="text-center p-5 border rounded-4 bg-light">
       <p>Selecciona un usuario para ver el detalle profesional</p>
