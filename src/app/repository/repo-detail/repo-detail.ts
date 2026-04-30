@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef} from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Repository } from '../repository';
 import { RepositoryService } from '../repository.service';
@@ -14,7 +14,8 @@ export class RepoDetail implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private repoService: RepositoryService
+    private repoService: RepositoryService,
+    private cd: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +24,7 @@ export class RepoDetail implements OnInit {
     if (id) {
       this.repoService.getRepositories().subscribe(repos => {
         this.repoDetail = repos.find(r => r.id === id);
+        this.cd.detectChanges();
       });
     }
   }
